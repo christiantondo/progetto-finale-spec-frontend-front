@@ -4,6 +4,7 @@ import Homepage from './pages/Homepage';
 import VehicleList from './pages/VehicleList';
 import UserFavorite from './pages/UserFavorite';
 import { GlobalProvider } from './context/GlobalContext';
+import { DetailPage } from './pages/DetailPage';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
                     <Route path="/" element={<Homepage />} />
                     <Route path="/vehicles" element={<VehicleList />} />
                     <Route path="/userfavorite" element={<UserFavorite />} />
+                    <Route path="/vehicles/:id" element={<DetailPage />} />
                 </Routes>
 
             </BrowserRouter>

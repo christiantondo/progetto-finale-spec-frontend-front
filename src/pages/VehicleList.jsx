@@ -5,7 +5,6 @@ import VehicleCard from "../components/VehicleCard";
 export default function VehicleList() {
 
     const { vehicles } = useContext(GlobalContext);
-    console.log("All Vehicles", vehicles);
 
     return (
         <div>
