@@ -12,8 +12,17 @@ export default function VehicleList() {
             <h1>Our Vehicles</h1>
             <input
                 type="text"
-                placeholder="Search by model or category..."
+                placeholder="Search by model..."
             />
+            <select>
+                <option value="All">All</option>
+                <option value="Car">Car</option>
+                <option value="Bike">Bike</option>
+            </select>
+            <select>
+                <option value="AZ">Alphabetical A - Z</option>
+                <option value="ZA">Alphabetical Z - A</option>
+            </select>
             <div>
                 {vehicles.map((vehicle) => (
                     <VehicleCard
