@@ -43,11 +43,18 @@ body {
     margin: 0 auto;
 }
 
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
 .card {
     display: flex;
     justify-content: space-between;
-    height: 200px;
-    width: 200px;
+    height: 220px;
+    width: 250px;
     background-color: rgb(224, 224, 224);
     flex-direction: column;
     border: 1px solid #ddd;
@@ -55,11 +62,37 @@ body {
     padding: 15px;
 }
 
-.card-container {
+.card-buttons {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 20px;
+    gap: 10px;
+}
+
+.detail-button {
+    text-decoration: none;
+    color: black;
+    background-color: #c7c7c7;
+    width: 116px;
+    border-radius: 8px;
+    padding: 6px;
+    transition: opacity 0.5s ease;
+}
+
+button {
+    background-color: #c7c7c7;
+    width: 116px;
+    border-radius: 8px;
+    padding: 6px;
+    transition: opacity 0.5s ease;
+    border: none;
+}
+
+button:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.detail-button:hover {
+    opacity: 0.5;
 }
 
 .search-filter-vehicle {

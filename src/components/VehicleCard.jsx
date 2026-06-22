@@ -5,8 +5,10 @@ export default function VehicleCard({ vehicle }) {
         <div className="card">
             <h3>{vehicle.title}</h3>
             <span>{vehicle.category}</span>
-            <div>
-                <Link to={`/vehicles/${vehicle.id}`}>Details</Link>
+
+            <Link to={`/vehicles/${vehicle.id}`} className="detail-button">Discover more</Link>
+
+            <div className="card-buttons">
                 <button>Compare</button>
                 <button>Add to favorites ♥</button>
             </div>
