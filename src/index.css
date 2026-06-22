@@ -91,6 +91,23 @@ button:hover {
     cursor: pointer;
 }
 
+input {
+    width: 200px;
+    border-radius: 10px;
+    padding: 10px;
+    transition: opacity 0.5s ease;
+    border-color: rgb(146, 16, 16);
+}
+
+select {
+    border-radius: 10px;
+    padding: 10px;
+}
+
+select:hover {
+    cursor: pointer;
+}
+
 .detail-button:hover {
     opacity: 0.5;
 }
