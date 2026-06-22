@@ -13,18 +13,22 @@ function App() {
 
             <BrowserRouter>
 
-                <nav>
-                    <NavLink to="/">LSV</NavLink>
-                    <NavLink to="/vehicles">Our Vehicles</NavLink>
-                    <NavLink to="/userfavorite">Your favorites</NavLink>
-                </nav>
+                <div>
+                    <nav className='navbar'>
+                        <NavLink to="/">LSV</NavLink>
+                        <NavLink to="/vehicles">Our Vehicles</NavLink>
+                        <NavLink to="/userfavorite">Your favorites</NavLink>
+                    </nav>
 
-                <Routes>
-                    <Route path="/" element={<Homepage />} />
-                    <Route path="/vehicles" element={<VehicleList />} />
-                    <Route path="/userfavorite" element={<UserFavorite />} />
-                    <Route path="/vehicles/:id" element={<DetailPage />} />
-                </Routes>
+                    <div className='container-boxed'>
+                        <Routes>
+                            <Route path="/" element={<Homepage />} />
+                            <Route path="/vehicles" element={<VehicleList />} />
+                            <Route path="/userfavorite" element={<UserFavorite />} />
+                            <Route path="/vehicles/:id" element={<DetailPage />} />
+                        </Routes>
+                    </div>
+                </div>
 
             </BrowserRouter>
 

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function VehicleCard({ vehicle }) {
     return (
-        <div>
+        <div className="card">
             <h3>{vehicle.title}</h3>
             <span>{vehicle.category}</span>
             <div>
