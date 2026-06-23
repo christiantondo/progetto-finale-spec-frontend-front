@@ -1,10 +1,25 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import VehicleCard from "../components/VehicleCard";
 
 export default function VehicleList() {
 
     const { vehicles } = useContext(GlobalContext);
+    const [search, setSearch] = useState("");
+    const [category, setCategory] = useState("All");
+    const [sortOrder, setSortOrder] = useState("AZ");
+
+    const filteredVehicles = vehicles
+        .filter(v => v.title.toLowerCase().includes(search.toLowerCase()))
+        .filter(v => {
+            if (category === "All") return true;
+            return v.category === category;
+        })
+        .sort((a, b) => {
+            return sortOrder === "AZ"
+                ? a.title.localeCompare(b.title)
+                : b.title.localeCompare(a.title);
+        });
 
     return (
         <div>
@@ -13,19 +28,26 @@ export default function VehicleList() {
                 <input
                     type="text"
                     placeholder="Search by model..."
+                    value={search}
+                    onChange={e => setSearch(e.target.value)}
                 />
-                <select>
+                <select
+                    value={category}
+                    onChange={e => setCategory(e.target.value)}
+                >
                     <option value="All">All</option>
                     <option value="Car">Car</option>
                     <option value="Bike">Bike</option>
                 </select>
-                <select>
+                <select
+                    value={sortOrder}
+                    onChange={e => setSortOrder(e.target.value)}>
                     <option value="AZ">Alphabetical A - Z</option>
                     <option value="ZA">Alphabetical Z - A</option>
                 </select>
             </div>
             <div className="card-container">
-                {vehicles.map((vehicle) => (
+                {filteredVehicles.map((vehicle) => (
                     <VehicleCard
                         key={vehicle.id}
                         vehicle={vehicle}
