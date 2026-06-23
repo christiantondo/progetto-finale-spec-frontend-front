@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useMemo } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import VehicleCard from "../components/VehicleCard";
 
@@ -9,17 +9,19 @@ export default function VehicleList() {
     const [category, setCategory] = useState("All");
     const [sortOrder, setSortOrder] = useState("AZ");
 
-    const filteredVehicles = vehicles
-        .filter(v => v.title.toLowerCase().includes(search.toLowerCase()))
-        .filter(v => {
-            if (category === "All") return true;
-            return v.category === category;
-        })
-        .sort((a, b) => {
-            return sortOrder === "AZ"
-                ? a.title.localeCompare(b.title)
-                : b.title.localeCompare(a.title);
-        });
+    const filteredVehicles = useMemo(() => {
+        return vehicles
+            .filter(v => v.title.toLowerCase().includes(search.toLowerCase()))
+            .filter(v => {
+                if (category === "All") return true;
+                return v.category === category;
+            })
+            .sort((a, b) => {
+                return sortOrder === "AZ"
+                    ? a.title.localeCompare(b.title)
+                    : b.title.localeCompare(a.title);
+            });
+    }, [vehicles, search, category, sortOrder]);
 
     return (
         <div>
