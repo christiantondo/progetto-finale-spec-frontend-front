@@ -12,10 +12,7 @@ export default function VehicleList() {
     const filteredVehicles = useMemo(() => {
         return vehicles
             .filter(v => v.title.toLowerCase().includes(search.toLowerCase()))
-            .filter(v => {
-                if (category === "All") return true;
-                return v.category === category;
-            })
+            .filter(v => category === "All" || v.category === category)
             .sort((a, b) => {
                 return sortOrder === "AZ"
                     ? a.title.localeCompare(b.title)
