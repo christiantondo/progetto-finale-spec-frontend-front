@@ -7,6 +7,8 @@
 body {
     font-family: sans-serif;
     min-height: 100vh;
+    background-color: #181A1A;
+    color: white;
 }
 
 .navbar {
@@ -56,6 +58,7 @@ body {
     height: 220px;
     width: 250px;
     background-color: rgb(224, 224, 224);
+    color: #181A1A;
     flex-direction: column;
     border: 1px solid #ddd;
     border-radius: 8px;
