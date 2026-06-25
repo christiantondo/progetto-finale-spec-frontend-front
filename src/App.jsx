@@ -10,6 +10,7 @@ import Homepage from './pages/Homepage';
 import VehicleList from './pages/VehicleList';
 import UserFavorite from './pages/UserFavorite';
 import { DetailPage } from './pages/DetailPage';
+import FavoritesSidebar from "./components/FavoritesSidebar";
 
 // Importazione del Contesto Globale: rende disponibili i dati in tutta l'applicazione.
 import { GlobalProvider } from './context/GlobalContext';
@@ -33,9 +34,10 @@ function App() {
 
                     <nav className='navbar'>
                         <NavLink to="/" className="link-logo"><img src="/LSV-nobg.png" alt="LSV Logo" className="nav-logo" /></NavLink>
-                        <NavLink to="/vehicles">Our Vehicles</NavLink>
-                        <NavLink to="/userfavorite">Your favorites</NavLink>
+                        <NavLink to="/vehicles">Vehicles</NavLink>
                     </nav>
+
+                    <FavoritesSidebar />
 
                     <div className='container-boxed'>
                         {/* Routes valuta l'URL attuale e mostra solo il componente associato 
@@ -47,18 +49,16 @@ function App() {
                             {/* Rotta con la lista dei veicoli e i filtri di ricerca. */}
                             <Route path="/vehicles" element={<VehicleList />} />
 
-                            {/* Rotta che mostra i preferiti dell'utente. */}
-                            <Route path="/userfavorite" element={<UserFavorite />} />
-
                             {/* Rotta dinamica per la visualizzazione dei dettagli del singolo veicolo con id:x. */}
                             <Route path="/vehicles/:id" element={<DetailPage />} />
                         </Routes>
                     </div>
+
                 </div>
 
             </BrowserRouter>
 
-        </GlobalProvider>
+        </GlobalProvider >
     )
 }
 
