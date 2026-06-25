@@ -22,6 +22,18 @@ export function GlobalProvider({ children }) {
     // Questo array si popolerà non appena la chiamata API restituirà i dati dei veicoli.
     const [vehicles, setVehicles] = useState([]);
 
+    const [favorites, setFavorites] = useState([]);
+
+    const toggleFavorites = (vehicle) => {
+        setFavorites(prevFavorites => {
+            const isFavorite = prevFavorites.some(favorite => favorite.id === vehicle.id);
+
+            return isFavorite
+                ? prevFavorites.filter(favorite => favorite.id !== vehicle.id)
+                : [...prevFavorites, vehicle];
+        })
+    }
+
     useEffect(() => {
         // Eseguo una richiesta HTTP di tipo GET verso l'endpoint generale dei veicoli del server.
         // Questa rotta restituisce l'array dei veicoli mostrando solo id, title e category.
@@ -38,7 +50,7 @@ export function GlobalProvider({ children }) {
         Tutto ciò che viene inserito all'interno dell'oggetto 'value' (in questo caso l'array dei veicoli e la sua funzione per aggiornarlo)
         diventa istantaneamente accessibile in tempo reale a qualunque componente si trovi dentro {children},
         eliminando la necessità di passare i dati di padre in figlio tramite le props tradizionali. */
-        <GlobalContext.Provider value={{ vehicles, setVehicles }}>
+        <GlobalContext.Provider value={{ vehicles, setVehicles, favorites, toggleFavorites }}>
             {children}
         </GlobalContext.Provider>
     )
