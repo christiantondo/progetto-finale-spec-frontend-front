@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background-color: #181A1A;
     color: white;
     overflow: scroll;
@@ -69,12 +69,13 @@ body {
     justify-content: space-between;
     height: 220px;
     width: 250px;
-    background-color: rgb(224, 224, 224);
+    background-color: rgba(224, 224, 224, 0.918);
     color: #181A1A;
     flex-direction: column;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 15px;
+    font-size: 18px;
 }
 
 .card-buttons {
@@ -147,4 +148,33 @@ select:hover {
     flex-wrap: wrap;
     gap: 20px;
     padding: 22px;
+}
+
+.favorites-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100vh;
+    border-left: 3px solid rgb(60, 60, 60);
+    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.6);
+    z-index: 999;
+}
+
+.sidebar-content {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-content h2 {
+    font-size: 22px;
+    color: white;
+    margin-bottom: 12px;
+}
+
+.sidebar-cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
