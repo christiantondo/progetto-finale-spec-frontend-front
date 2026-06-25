@@ -38,7 +38,6 @@ function App() {
                     </nav>
 
                     <div className='container-boxed'>
-
                         {/* Routes valuta l'URL attuale e mostra solo il componente associato 
                         alla prima rotta che combacia perfettamente. */}
                         <Routes>

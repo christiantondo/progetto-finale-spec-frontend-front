@@ -1,7 +1,7 @@
 export default function Homepage() {
     return (
         <div>
-            <h1>Welcome to LSV</h1>
+            <img src="/Banner.jpg" alt="LSV Banner" className="banner" />
         </div>
     )
 }

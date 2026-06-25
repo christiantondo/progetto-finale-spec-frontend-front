@@ -5,11 +5,20 @@
 }
 
 body {
-    font-family: sans-serif;
-    min-height: 100vh;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     background-color: #181A1A;
     color: white;
     overflow: scroll;
+}
+
+.banner {
+    margin-top: -20px;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
 }
 
 .navbar {
@@ -22,6 +31,9 @@ body {
     position: relative;
     z-index: 99;
     box-shadow: 3px 6px 11px 2px rgba(0, 0, 0, 0.23);
+    font-size: medium;
+    position: sticky;
+    top: 0;
 }
 
 .navbar a {
