@@ -12,13 +12,11 @@ body {
 }
 
 .navbar {
-    height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 30px;
     background-color: rgb(146, 16, 16);
-    padding: 0.25rem;
     margin-bottom: 10px;
     position: relative;
     z-index: 99;
@@ -38,6 +36,15 @@ body {
 
 .navbar a.active {
     font-weight: bold;
+}
+
+.nav-logo {
+    height: 70px;
+}
+
+.link-logo {
+    display: flex;
+    align-items: center;
 }
 
 .container-boxed {
