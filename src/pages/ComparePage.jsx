@@ -68,7 +68,7 @@ export default function ComparePage() {
                         {/* RIGA PREZZO */}
                         <td><strong>Price</strong></td>
                         {vehicleSpecs?.map((vehicle) =>
-                            <td key={vehicle.id}>{vehicle.price} €</td>
+                            <td key={vehicle.id}>{Number(vehicle.price).toLocaleString('it-IT')} €</td>
                         )}
                     </tr>
                     <tr>
@@ -89,7 +89,7 @@ export default function ComparePage() {
                         {/* RIGA CHILOMETRAGGIO */}
                         <td><strong>Total Km</strong></td>
                         {vehicleSpecs?.map((vehicle) =>
-                            <td key={vehicle.id}> {vehicle.km}</td>
+                            <td key={vehicle.id}> {Number(vehicle.km).toLocaleString('it-IT')}</td>
                         )}
                     </tr>
                     <tr>
