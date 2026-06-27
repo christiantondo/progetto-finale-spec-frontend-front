@@ -42,10 +42,10 @@ export default function DetailPage() {
     return (
         <div>
             <h2>{vehicle.title}</h2>
-            <p>Price: {vehicle.price}</p>
+            <p>Price: {Number(vehicle.price).toLocaleString('it-IT')}</p>
             <p>Brand: {vehicle.brand}</p>
             <p>Release Year: {vehicle.releaseYear}</p>
-            <p>Total Km: {vehicle.km}</p>
+            <p>Total Km: {Number(vehicle.km).toLocaleString('it-IT')}</p>
             <p>Previous owners: {vehicle.owners}</p>
             <p>Fuel type: {vehicle.fuelType}</p>
             <p>Engine size: {vehicle.engineSize}</p>
