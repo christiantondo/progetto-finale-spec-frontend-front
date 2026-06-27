@@ -1,3 +1,6 @@
+/* ==========================================================================
+   1. RESET GENERALE
+   ========================================================================== */
 * {
     padding: 0;
     margin: 0;
@@ -10,41 +13,57 @@ body {
     color: white;
     overflow: scroll;
     background-image: url("Banner.jpg");
+    /* Immagine di sfondo del sito */
     background-repeat: no-repeat;
     background-size: cover;
+    /* Copre interamente la pagina */
     background-attachment: fixed;
+    /* Lo sfondo resta fermo durante lo scrolling */
 }
 
+/* ==========================================================================
+   2. NAVBAR (BARRA DI NAVIGAZIONE)
+   ========================================================================== */
 .navbar {
     display: flex;
     justify-content: center;
+    /* Centra i link orizzontalmente */
     align-items: center;
+    /* Centra i link orizzontalmente */
     gap: 30px;
+    /* Spazio fisso tra un link e l'altro */
     margin-top: 10px;
     position: relative;
     z-index: 99;
+    /* Mantiene la navbar sopra gli altri elementi */
     font-size: medium;
+    /* Rende la navbar fissa in alto quando si scende nella pagina */
     position: sticky;
     top: 0;
 }
 
 .navbar a {
     text-decoration: none;
+    /* Rimuove la sottolineatura dai link */
     color: white;
     font-weight: 500;
     transition: opacity 0.7s ease;
+    /* Effetto fluido per il passaggio del mouse */
 }
 
 .navbar a:hover {
     opacity: 0.5;
+    /* Opacizza il link quando ci passi sopra con il mouse */
 }
 
 .navbar a.active {
     font-weight: bold;
+    /* Evidenzia in grassetto il link della pagina in cui ci si trova */
 }
 
 .nav-logo {
     height: 70px;
+    /* Altezza fissa per il logo del sito */
 }
 
 .link-logo {
@@ -52,28 +71,45 @@ body {
     align-items: center;
 }
 
+/* ==========================================================================
+   3. LAYOUT E STRUTTURA CONTENITORI
+   ========================================================================== */
+
 .container-boxed {
     max-width: 1200px;
+    /* Larghezza massima del contenuto centrale */
     margin: 0 auto;
+    /* Centra il contenitore nella pagina */
 }
 
 .card-container {
     display: flex;
     flex-wrap: wrap;
+    /* Permette alle card di andare a capo se non c'è spazio */
     gap: 20px;
+    /* Spazio tra le card */
     padding: 20px;
 }
+
+/* ==========================================================================
+   4. ELEMENTI COMPONENTE: VEHICLE CARD
+   ========================================================================== */
 
 .card {
     display: flex;
     justify-content: space-between;
+    /* Distribuisce il testo in alto e i bottoni in basso */
     height: 220px;
     width: 250px;
     background-color: rgba(224, 224, 224, 0.918);
+    /* Sfondo grigio chiaro quasi opaco */
     color: #181A1A;
+    /* Testo scuro per contrasto */
     flex-direction: column;
+    /* Dispone il contenuto in verticale */
     border: 1px solid #ddd;
     border-radius: 8px;
+    /* Angoli arrotondati della card */
     padding: 15px;
     font-size: 18px;
 }
@@ -81,8 +117,10 @@ body {
 .card-buttons {
     display: flex;
     gap: 10px;
+    /* Spazio tra i pulsanti interni alla card */
 }
 
+/* Bottoni Generici dello stile del sito */
 .btn {
     display: inline-block;
     width: 110px;
@@ -96,25 +134,31 @@ body {
     background-color: #f3f4f6;
     color: #181A1A;
     transition: all 0.3s ease;
+    /* Transizione fluida per gli effetti hover e active */
     cursor: pointer;
+    /* Cambia l'icona del mouse all'hovering */
 }
 
 .btn:hover {
     opacity: 0.7;
 }
 
+/* Bottone Dettagli (Occupa tutta la larghezza della card) */
 .btn-detail {
     background-color: #f3f4f6;
     width: 100%;
 }
 
+/* Bottone Preferiti Standard */
 .btn-fav {
     background-color: #f3f4f6;
     color: #374151;
 }
 
+/* Bottone Preferiti Attivo (Quando l'elemento è salvato) */
 .btn-fav.active-fav {
     background-color: rgb(146, 16, 16);
+    /* Diventa rosso alla selezione*/
     border-color: transparent;
     color: white;
 }
@@ -126,12 +170,17 @@ body {
     width: 100%;
 }
 
+/* ==========================================================================
+   5. FILTRI E INPUT DI RICERCA
+   ========================================================================== */
+
 input {
     width: 200px;
     border-radius: 10px;
     padding: 10px;
     transition: opacity 0.5s ease;
     border-color: rgb(146, 16, 16);
+    /* Bordo rosso coerente con il brand */
 }
 
 select {
@@ -150,15 +199,24 @@ select:hover {
     padding: 22px;
 }
 
+/* ==========================================================================
+   6. STRUTTURE COMPONENTI: LE SIDEBAR (BARRE LATERALI)
+   ========================================================================== */
+/* Sidebar dei Preferiti (Ancorata a Destra) */
 .favorites-sidebar {
     position: fixed;
+    /* Resta fissa sullo schermo durante lo scroll */
     top: 0;
     right: 0;
+    /* Bloccata sul lato destro */
     width: 300px;
     height: 100vh;
+    /* Occupa tutta l'altezza dello schermo */
     border-left: 3px solid rgb(60, 60, 60);
+    /* Ombra verso sinistra */
     box-shadow: -5px 0 25px rgba(0, 0, 0, 0.6);
     z-index: 999;
+    /* Sempre in primissimo piano */
     display: flex;
     flex-direction: column;
 }
@@ -181,33 +239,39 @@ select:hover {
     gap: 15px;
 }
 
+/* Sidebar del Comparatore (Ancorata a Sinistra) */
 .compare-sidebar {
     display: flex;
     flex-direction: column;
     position: fixed;
+    /* Fissa sullo schermo */
     top: 0;
     left: 0;
+    /* Bloccata sul lato sinistro */
     width: 300px;
     height: 100vh;
     border-right: 3px solid rgb(146, 16, 16);
-    box-shadow: 5px 0 25px rgba(0, 0, 0, 0.6);
+    /* Bordo destro rosso */
     z-index: 999;
 }
 
+/* Le Mini Card dentro le barre laterali */
 .sidebar-mini-card {
     background-color: rgba(224, 224, 224, 0.918);
     border-radius: 6px;
     padding: 15px;
     color: #181A1A;
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 500;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
+    /* Spinge il testo a sinistra e la X a destra */
     align-items: center;
+    /* Centra verticalmente gli elementi interni */
 }
 
+/* Bottone "Compare Now" (In fondo alla Sidebar) */
 .btn-start-compare {
     display: block;
     width: 100%;
@@ -221,8 +285,8 @@ select:hover {
     border-radius: 8px;
     border-color: transparent;
     margin-top: auto;
+    /* Spinge automaticamente il bottone in fondo al contenitore flex */
     cursor: pointer;
-
 }
 
 .btn-start-compare:hover {
@@ -230,6 +294,7 @@ select:hover {
     opacity: 1;
 }
 
+/* Pulsante per rimuovere la "X" nelle mini card */
 .btn-remove-compare {
     background: none;
     border: none;
@@ -242,4 +307,66 @@ select:hover {
 
 .btn-remove-compare:hover {
     color: rgb(180, 20, 20);
+    /* Diventa rosso al passaggio del mouse */
+}
+
+/* ==========================================================================
+   7. PAGINA DI COMPARAZIONE (COMPARE PAGE E TABELLA)
+   ========================================================================== */
+
+.compare-page {
+    padding: 30px 15px;
+}
+
+.compare-page h1 {
+    font-size: 2rem;
+    margin-bottom: 8px;
+    color: white;
+}
+
+.compare-page p {
+    color: #9ca3af;
+    margin-bottom: 25px;
+    font-size: 1rem;
+}
+
+/* Contenitore Tabella HTML */
+.compare-page table {
+    width: 100%;
+    border-collapse: collapse;
+    /* Unisce i bordi delle celle per eliminare spazi vuoti intermedi */
+    background-color: rgba(224, 224, 224, 0.95);
+    color: #181A1A;
+    border-radius: 8px;
+    overflow: hidden;
+    /* Taglia i contenuti che escono dal raggio degli angoli arrotondati */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Intestazioni Superiori della Tabella (Nomi delle Auto) */
+.compare-page th {
+    background-color: rgb(146, 16, 16);
+    color: white;
+    font-weight: bold;
+    text-align: left;
+    padding: 14px 18px;
+    font-size: 0.95rem;
+    border-bottom: 2px solid #ddd;
+}
+
+/* La primissima cella in alto a sinistra ("Vehicle name") */
+.compare-page th:first-child {
+    background-color: #1f2222;
+    /* Grigio molto scuro per distinguerla dai veicoli */
+    width: 200px;
+    /* Larghezza fissa per la colonna delle caratteristiche */
+}
+
+/* Celle dei dati tecnici */
+.compare-page td {
+    padding: 12px 18px;
+    font-size: 1rem;
+    border-bottom: 1px solid #dbdbdb;
+    /* Linea orizzontale divisoria sottile */
+    text-align: left;
 }
