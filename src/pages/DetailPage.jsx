@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 
-export function DetailPage() {
+export default function DetailPage() {
     // Tramite la destrutturazione { id } estraggo la variabile definita come ':id' in App.jsx.
     // Se l'utente naviga su '/vehicles/3', la costante 'id' conterrà esattamente il valore stringa "3".
     const { id } = useParams();

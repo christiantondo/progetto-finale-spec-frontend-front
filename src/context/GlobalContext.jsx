@@ -24,6 +24,8 @@ export function GlobalProvider({ children }) {
 
     const [favorites, setFavorites] = useState([]);
 
+    const [compare, setCompare] = useState([]);
+
     const toggleFavorites = (vehicle) => {
         setFavorites(prevFavorites => {
             const isFavorite = prevFavorites.some(favorite => favorite.id === vehicle.id);
@@ -32,7 +34,23 @@ export function GlobalProvider({ children }) {
                 ? prevFavorites.filter(favorite => favorite.id !== vehicle.id)
                 : [...prevFavorites, vehicle];
         })
-    }
+    };
+
+    const toggleCompare = (vehicle) => {
+        setCompare(prevCompare => {
+            const isCompared = prevCompare.some(item => item.id === vehicle.id);
+
+            if (isCompared) {
+                return prevCompare.filter(item => item.id !== vehicle.id)
+            }
+            if (prevCompare.length >= 4) {
+                alert("You can compare up to 4 vehicles at the same time!")
+                return prevCompare;
+            }
+
+            return [...prevCompare, vehicle];
+        })
+    };
 
     useEffect(() => {
         // Eseguo una richiesta HTTP di tipo GET verso l'endpoint generale dei veicoli del server.
@@ -50,7 +68,7 @@ export function GlobalProvider({ children }) {
         Tutto ciò che viene inserito all'interno dell'oggetto 'value' (in questo caso l'array dei veicoli e la sua funzione per aggiornarlo)
         diventa istantaneamente accessibile in tempo reale a qualunque componente si trovi dentro {children},
         eliminando la necessità di passare i dati di padre in figlio tramite le props tradizionali. */
-        <GlobalContext.Provider value={{ vehicles, setVehicles, favorites, toggleFavorites }}>
+        <GlobalContext.Provider value={{ vehicles, setVehicles, favorites, toggleFavorites, compare, toggleCompare }}>
             {children}
         </GlobalContext.Provider>
     )

@@ -9,9 +9,11 @@ import { GlobalContext } from "../context/GlobalContext";
 // Tramite la destrutturazione { vehicle }, estraggo direttamente la singola entità del veicolo passata dal componente padre (VehicleList).
 export default function VehicleCard({ vehicle }) {
 
-    const { favorites, toggleFavorites } = useContext(GlobalContext);
+    const { favorites, toggleFavorites, compare, toggleCompare } = useContext(GlobalContext);
 
     const isFavorite = favorites.some(favorite => favorite.id === vehicle.id);
+
+    const isCompared = compare.some(item => item.id === vehicle.id);
 
     return (
 
@@ -30,9 +32,13 @@ export default function VehicleCard({ vehicle }) {
 
                 <div className="card-buttons">
                     {/* - Compare permetterà l'inserimento del veicolo ad un lista di comparazione.
-                    - Add to favorites consentirà all'utende di salvare dei veicoli preferiti e di visualizzarli nell'apposita
+                    - Add to favorites consentirà all'utente di salvare dei veicoli preferiti e di visualizzarli nell'apposita
                     pagina "Your favorites". */}
-                    <button className="btn">Compare</button>
+                    <button
+                        onClick={() => toggleCompare(vehicle)}
+                        className={isCompared ? "btn btn-compare active-compare" : "btn"}
+                    > {isCompared ? "Added to Compare list" : "Compare"}
+                    </button>
                     <button
                         onClick={() => toggleFavorites(vehicle)}
                         className={isFavorite ? "btn btn-fav active-fav" : "btn btn-fav"}

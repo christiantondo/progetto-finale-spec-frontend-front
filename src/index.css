@@ -115,7 +115,7 @@ body {
 
 .btn-fav.active-fav {
     background-color: rgb(146, 16, 16);
-    border-color: rgb(146, 16, 16);
+    border-color: transparent;
     color: white;
 }
 
@@ -159,6 +159,8 @@ select:hover {
     border-left: 3px solid rgb(60, 60, 60);
     box-shadow: -5px 0 25px rgba(0, 0, 0, 0.6);
     z-index: 999;
+    display: flex;
+    flex-direction: column;
 }
 
 .sidebar-content {
@@ -177,4 +179,67 @@ select:hover {
     display: flex;
     flex-direction: column;
     gap: 15px;
+}
+
+.compare-sidebar {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100vh;
+    border-right: 3px solid rgb(146, 16, 16);
+    box-shadow: 5px 0 25px rgba(0, 0, 0, 0.6);
+    z-index: 999;
+}
+
+.sidebar-mini-card {
+    background-color: rgba(224, 224, 224, 0.918);
+    border-radius: 6px;
+    padding: 15px;
+    color: #181A1A;
+    font-size: 0.95rem;
+    font-weight: 500;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-start-compare {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: rgb(146, 16, 16);
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    border-color: transparent;
+    margin-top: auto;
+    cursor: pointer;
+
+}
+
+.btn-start-compare:hover {
+    background-color: rgb(180, 20, 20);
+    opacity: 1;
+}
+
+.btn-remove-compare {
+    background: none;
+    border: none;
+    color: #181A1A;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0 5px;
+    transition: color 0.2s ease;
+}
+
+.btn-remove-compare:hover {
+    color: rgb(180, 20, 20);
 }

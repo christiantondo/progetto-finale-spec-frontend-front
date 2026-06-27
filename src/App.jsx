@@ -9,8 +9,10 @@ import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 import Homepage from './pages/Homepage';
 import VehicleList from './pages/VehicleList';
 import UserFavorite from './pages/UserFavorite';
-import { DetailPage } from './pages/DetailPage';
+import DetailPage from './pages/DetailPage'
+import ComparePage from "./pages/ComparePage";
 import FavoritesSidebar from "./components/FavoritesSidebar";
+import CompareSideBar from "./components/CompareSideBar";
 
 // Importazione del Contesto Globale: rende disponibili i dati in tutta l'applicazione.
 import { GlobalProvider } from './context/GlobalContext';
@@ -38,6 +40,7 @@ function App() {
                     </nav>
 
                     <FavoritesSidebar />
+                    <CompareSideBar />
 
                     <div className='container-boxed'>
                         {/* Routes valuta l'URL attuale e mostra solo il componente associato 
@@ -48,6 +51,8 @@ function App() {
 
                             {/* Rotta con la lista dei veicoli e i filtri di ricerca. */}
                             <Route path="/vehicles" element={<VehicleList />} />
+
+                            <Route path="/compare" element={<ComparePage />} />
 
                             {/* Rotta dinamica per la visualizzazione dei dettagli del singolo veicolo con id:x. */}
                             <Route path="/vehicles/:id" element={<DetailPage />} />
