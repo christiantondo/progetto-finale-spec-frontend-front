@@ -38,7 +38,7 @@ function App() {
                     il relativo tag riceverà la classe active per permetterci di evidenziarlo via CSS. */}
 
                     <nav className='navbar'>
-                        <NavLink to="/" className="link-logo"><img src="/LSV-nobg.png" alt="LSV Logo" className="nav-logo" /></NavLink>
+                        <NavLink to="/" className="link-logo"><img src="/LSV-nobg.png" alt="LSV Logo" className="nav-logo" draggable="false" /></NavLink>
                         <NavLink to="/vehicles">Vehicles</NavLink>
                         <NavLink to="/compare">Compare Vehicles</NavLink>
                     </nav>
