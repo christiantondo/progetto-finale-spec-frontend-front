@@ -16,6 +16,7 @@ import CompareSideBar from "./components/CompareSideBar";
 
 // Importazione del Contesto Globale: rende disponibili i dati in tutta l'applicazione.
 import { GlobalProvider } from './context/GlobalContext';
+import VideoBackground from "./components/VideoBackground";
 
 function App() {
 
@@ -29,7 +30,9 @@ function App() {
             intercettando i cambi di URL senza far ricaricare la pagina web al browser ottimizzando il sito. */}
             <BrowserRouter>
 
-                <div>
+                <VideoBackground />
+
+                <div className="app-content-wrapper">
 
                     {/* Contiene i link globali del sito. Grazie a NavLink, se l'utente si trova ad esempio su '/vehicles', 
                     il relativo tag riceverà la classe active per permetterci di evidenziarlo via CSS. */}
