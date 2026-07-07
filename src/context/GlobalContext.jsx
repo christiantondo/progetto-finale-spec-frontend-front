@@ -22,32 +22,43 @@ export function GlobalProvider({ children }) {
     // Questo array si popolerà non appena la chiamata API restituirà i dati dei veicoli.
     const [vehicles, setVehicles] = useState([]);
 
+    // Inizializzo lo stato come un array vuoto '[]'.
+    // Questo array si popolerà non appena l'utente aggiungerà un nuovo veicolo ai preferiti.
     const [favorites, setFavorites] = useState([]);
 
+    // Inizializzo lo stato come un array vuoto '[]'.
+    // Questo array si popolerà non appena l'utente aggiungerà un nuovo veicolo alla lista di comparazione.
     const [compare, setCompare] = useState([]);
 
+    // Funzione interruttore per aggiungere o rimuovere un veicolo dai preferiti
     const toggleFavorites = (vehicle) => {
         setFavorites(prevFavorites => {
+            // .some() controlla se nell'array esiste già un veicolo con lo stesso ID di quello cliccato
             const isFavorite = prevFavorites.some(favorite => favorite.id === vehicle.id);
 
+            // Tramite l'operatore ternario decido l'azione da compiere:
             return isFavorite
-                ? prevFavorites.filter(favorite => favorite.id !== vehicle.id)
-                : [...prevFavorites, vehicle];
+                ? prevFavorites.filter(favorite => favorite.id !== vehicle.id) // Se esisteva (true), lo rimuovo filtrandolo
+                : [...prevFavorites, vehicle]; // Se non esisteva (false), lo aggiungo clonando l'array
         })
     };
 
+    // Funzione interruttore per gestire l'inserimento o la rimozione dal comparatore
     const toggleCompare = (vehicle) => {
         setCompare(prevCompare => {
+            // Verifico se il veicolo cliccato è già presente nell'elenco di confronto
             const isCompared = prevCompare.some(item => item.id === vehicle.id);
 
+            // Primo controllo: Se il veicolo è già presente, lo rimuovo immediatamente e interrompo l'esecuzione
             if (isCompared) {
                 return prevCompare.filter(item => item.id !== vehicle.id)
             }
+            // Secondo controllo: Se non è presente, verifico che non sia già stato raggiunto il limite massimo di 4 auto
             if (prevCompare.length >= 4) {
                 alert("You can compare up to 4 vehicles at the same time!")
-                return prevCompare;
+                return prevCompare; // Restituisco l'array inalterato bloccando l'inserimento del quinto elemento
             }
-
+            // Se supera entrambi i controlli, inserisco il veicolo in coda clonando l'array con lo Spread Operator
             return [...prevCompare, vehicle];
         })
     };

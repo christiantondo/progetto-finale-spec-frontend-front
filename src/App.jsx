@@ -50,7 +50,7 @@ function App() {
                         {/* Routes valuta l'URL attuale e mostra solo il componente associato 
                         alla prima rotta che combacia perfettamente. */}
                         <Routes>
-                            {/* Rotto iniziale, Homepage del sito. */}
+                            {/* Rotta iniziale, Homepage del sito. */}
                             <Route path="/" element={<Homepage />} />
 
                             {/* Rotta con la lista dei veicoli e i filtri di ricerca. */}
