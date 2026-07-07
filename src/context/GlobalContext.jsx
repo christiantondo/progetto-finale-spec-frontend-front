@@ -32,6 +32,7 @@ export function GlobalProvider({ children }) {
 
     // Funzione interruttore per aggiungere o rimuovere un veicolo dai preferiti
     const toggleFavorites = (vehicle) => {
+        // Il valore iniziale di prevFavorites è un array vuoto '[]'.
         setFavorites(prevFavorites => {
             // .some() controlla se nell'array esiste già un veicolo con lo stesso ID di quello cliccato
             const isFavorite = prevFavorites.some(favorite => favorite.id === vehicle.id);
@@ -45,6 +46,7 @@ export function GlobalProvider({ children }) {
 
     // Funzione interruttore per gestire l'inserimento o la rimozione dal comparatore
     const toggleCompare = (vehicle) => {
+        // Il valore iniziale di prevCompare è un array vuoto '[]'.
         setCompare(prevCompare => {
             // Verifico se il veicolo cliccato è già presente nell'elenco di confronto
             const isCompared = prevCompare.some(item => item.id === vehicle.id);
