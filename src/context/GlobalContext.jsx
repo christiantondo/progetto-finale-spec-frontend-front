@@ -2,6 +2,7 @@
 // - useEffect: Gestisce gli effetti collaterali, in questo caso il recupero asincrono dei dati (fetch) all'avvio dell'app.
 // - useState: Crea lo stato centralizzato che conterrà i dati distribuiti a tutti i componenti.
 import { createContext, useEffect, useState } from "react";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 // Estraggo la variabile d'ambiente 'VITE_API_URL' configurata nel file '.env'.
 // Questa sintassi basata su 'import.meta.env' è lo standard moderno di Vite per caricare costanti sensibili o di configurazione
@@ -22,13 +23,13 @@ export function GlobalProvider({ children }) {
     // Questo array si popolerà non appena la chiamata API restituirà i dati dei veicoli.
     const [vehicles, setVehicles] = useState([]);
 
-    // Inizializzo lo stato come un array vuoto '[]'.
-    // Questo array si popolerà non appena l'utente aggiungerà un nuovo veicolo ai preferiti.
-    const [favorites, setFavorites] = useState([]);
+    // Inizializzo lo stato recuperando i dati pregressi dal localStorage.
+    // Se il browser non trova nulla, l'array vuoto '[]' viene usato come valore iniziale.
+    const [favorites, setFavorites] = useLocalStorage("lsv_favorites", []);
 
-    // Inizializzo lo stato come un array vuoto '[]'.
-    // Questo array si popolerà non appena l'utente aggiungerà un nuovo veicolo alla lista di comparazione.
-    const [compare, setCompare] = useState([]);
+    // Lo stato si sincronizza con il database locale all'avvio, 
+    // usando l'array vuoto '[]' solo se non ci sono auto precedentemente in confronto.
+    const [compare, setCompare] = useLocalStorage("lsv_compare", []);
 
     // Funzione interruttore per aggiungere o rimuovere un veicolo dai preferiti
     const toggleFavorites = (vehicle) => {
