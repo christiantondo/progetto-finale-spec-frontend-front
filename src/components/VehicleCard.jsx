@@ -11,8 +11,14 @@ export default function VehicleCard({ vehicle }) {
 
     const { favorites, toggleFavorites, compare, toggleCompare } = useContext(GlobalContext);
 
+    /* Il metodo '.some()' sull'array globale dei preferiti verifica se esiste già 
+       un veicolo salvato con lo stesso ID di questa specifica card (vehicle.id). 
+       Restituisce TRUE se trova una corrispondenza esatta, altrimenti restituisce FALSE. */
     const isFavorite = favorites.some(favorite => favorite.id === vehicle.id);
 
+    /* Segue la stessa logica di isFavorite ma lavora sull'array globale 'compare'.
+       Restituisce TRUE se il veicolo attuale è già stato inserito nella lista di comparazione, 
+       se quindi restituisce TRUE l'elemento di interfaccia viene aggiornato (button). */
     const isCompared = compare.some(item => item.id === vehicle.id);
 
     return (
@@ -36,13 +42,22 @@ export default function VehicleCard({ vehicle }) {
                     pagina "Your favorites". */}
                     <button
                         onClick={() => toggleCompare(vehicle)}
+                        /* Se isCompared è TRUE, l'operatore ternario assegna la classe speciale '.active-compare' per cambiare colore. 
+                        Se è FALSE, lascia la classe base '.btn'. */
                         className={isCompared ? "btn btn-compare active-compare" : "btn"}
-                    > {isCompared ? "Added to Compare list" : "Compare"}
+                    >
+                        {/* Se isCompared è TRUE significa che il veicolo è già nel Context, quindi mostra "Added to Compare list". 
+                        Se è FALSE, mostra la scritta standard "Compare". */ }
+                        {isCompared ? "Added to Compare list" : "Compare"}
                     </button>
                     <button
                         onClick={() => toggleFavorites(vehicle)}
+                        /* Se isFavorite è TRUE, applica la classe '.active-fav' che colora il bottone di rosso. 
+                        Se è FALSE, applica il grigio standard di '.btn-fav'. */
                         className={isFavorite ? "btn btn-fav active-fav" : "btn btn-fav"}
                     >
+                        {/* Cambia l'etichetta in tempo reale: se l'auto è già salvata offre l'azione di rimozione ("Remove ♥"), 
+                           altrimenti invita l'utente ad aggiungerla ("Add ♥"). */}
                         {isFavorite ? "Remove ♥" : "Add ♥"}</button>
                 </div>
             </div>
