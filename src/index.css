@@ -285,6 +285,23 @@ select:hover {
     /* Sempre in primissimo piano */
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
+}
+
+.favorites-sidebar::-webkit-scrollbar {
+    width: 6px;
+    /* Rende la barra sottile ed elegante */
+}
+
+.favorites-sidebar::-webkit-scrollbar-track {
+    background: rgba(24, 26, 26, 0.5);
+    /* Sfondo della traccia semi-trasparente */
+}
+
+.favorites-sidebar::-webkit-scrollbar-thumb {
+    background: rgb(146, 16, 16);
+    /* Il cursore diventa rosso mantenendo lo stile del branding del sito */
+    border-radius: 10px;
 }
 
 .sidebar-content {
