@@ -2,8 +2,9 @@
 // - useState: Consente di creare e gestire variabili di stato locali all'interno del componente.
 // - useMemo: Ottimizzazione avanzata per memorizzare in cache i risultati di calcoli complessi o dispendiosi,
 //   consente di ricaricare la pagina solo quando cambiano le sue dipendenze
-import { useContext, useState, useMemo } from "react";
+import { useContext, useState, useMemo, useCallback } from "react";
 import { GlobalContext } from "../context/GlobalContext";
+import debounce from "lodash/debounce"
 import VehicleCard from "../components/VehicleCard";
 
 export default function VehicleList() {
@@ -11,13 +12,25 @@ export default function VehicleList() {
     // Estraggo l'array "vehicles" dal Global Context.
     const { vehicles } = useContext(GlobalContext);
 
-    // Questi tre stati tracciano i criteri di filtraggio e ordinamento scelti dall'utente:
-    // - search: Stringa di testo digitata dall'utente per filtrare i veicoli in base al modello (title).
+    // Questi quattro stati tracciano i criteri di filtraggio e ordinamento scelti dall'utente:
+    // - search: Si aggiorna subito per consentire all'utente di visualizzare il testo digitato immediatamente.
     const [search, setSearch] = useState("");
+    // - debouncedSearch: Delayed Search, filtro per dare istruzioni a useMemo per ricalcolare l'array.
+    const [debouncedSearch, setDebouncedSearch] = useState("");
+
     // - category: Stringa che definisce la tipologia di veicolo selezionata ('All', 'Car', 'Bike') (category).
     const [category, setCategory] = useState("All");
     // - sortOrder: Stringa che determina la direzione dell'ordinamento alfabetico ('AZ' o 'ZA').
     const [sortOrder, setSortOrder] = useState("AZ");
+
+    // La funzione handlerChangeDebounced utilizza useCallback un array di dipendenze vuoto per creare un timer
+    // all'avvio dell'applicazione.
+    // Dopo che l'utente ha digitato, passati 500ms dallo stop di digitazione, il valore viene settato da setDebouncedSearch
+    // evitando così ricalcoli continui da parte dell'applicazione.
+    const handlerChangeDebounced = useCallback(
+        debounce((value) => {
+            setDebouncedSearch(value);
+        }, 500), []);
 
     // useMemo "congelerà" l'array filteredVehicles.
     // La catena di metodi (.filter().filter().sort()) verrà eseguita nuovamente solo ed esclusivamente se 
@@ -28,7 +41,7 @@ export default function VehicleList() {
             // Prendo il titolo del veicolo e il testo cercato, convertendoli entrambi in minuscolo (.toLowerCase()).
             // Questo rende la ricerca "Case-Insensitive" (ignora maiuscole/minuscole). Il metodo .includes() 
             // restituisce true se la sottostringa è presente, mantenendo il veicolo nell'array.
-            .filter(v => v.title.toLowerCase().includes(search.toLowerCase()))
+            .filter(v => v.title.toLowerCase().includes(debouncedSearch.toLowerCase()))
             // L'operatore logico OR || valuta la prima condizione: se 'category' è impostata su "All", 
             // l'espressione restituisce immediatamente true per tutti i veicoli, interrompendo il controllo.
             // Se lo stato è "Car" o "Bike", la prima parte è false, quindi JavaScript esegue la seconda parte,
@@ -43,7 +56,7 @@ export default function VehicleList() {
                     ? a.title.localeCompare(b.title)
                     : b.title.localeCompare(a.title);
             });
-    }, [vehicles, search, category, sortOrder]);
+    }, [vehicles, debouncedSearch, category, sortOrder]);
 
     return (
         <div>
@@ -55,7 +68,12 @@ export default function VehicleList() {
                     type="text"
                     placeholder="Search by model..."
                     value={search}
-                    onChange={e => setSearch(e.target.value)}
+                    //  setSearch: aggiorna subito l'input per visualizzare cosa sta digitando l'utente.
+                    //  handlerChangeDebounced: triggera il timer, a ogni nuova digitazione si resetta.
+                    onChange={e => {
+                        setSearch(e.target.value)
+                        handlerChangeDebounced(e.target.value)
+                    }}
                 />
                 <select
                     value={category}
